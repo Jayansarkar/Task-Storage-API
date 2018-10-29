@@ -20,17 +20,19 @@ class AllUsers(Resource):
 @api.route('/<public_id>')
 @api.response(404, "user not found")
 @api.param('public_id', 'The User identifier')
+@api.doc(security='apikey')
 class SingleUser(Resource):
     @api.marshal_with(user, envelope='data')
+    @token_required
     def get(self, public_id):
         return get_one_user(public_id)
 
-    @api.doc(security='apikey')
+    
     @admin_token_required
     def put(self, public_id):
         return make_admin(public_id)
 
-    @api.doc(security='apikey')
+    
     @admin_token_required
     def delete(self, public_id):
         return del_user(public_id)

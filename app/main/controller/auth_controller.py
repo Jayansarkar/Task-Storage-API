@@ -20,6 +20,7 @@ class Login(Resource):
 @api.route('/register')
 @api.response(403, "username or password should not be blank")
 @api.response(201, 'success')
+@api.doc(security='apikey')
 class Register(Resource):
     @api.doc("New user registration")
     @api.expect(register)
