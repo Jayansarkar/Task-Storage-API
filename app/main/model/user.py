@@ -74,7 +74,7 @@ class User:
         )
         db.commit()
         return {
-            'message': "User successfully updated",
+            'message': "User updated successfully",
             'user': self.to_json()
         }
 
@@ -87,7 +87,7 @@ class User:
         )
         db.commit()
         return {
-            'message': "User removed updated",
+            'message': "User removed succeddfully",
             'user': self.to_json()
         }
 

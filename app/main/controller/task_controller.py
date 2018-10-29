@@ -42,10 +42,12 @@ class SinlgeTask(Resource):
     @api.expect(task_status)
     @admin_token_required
     def put(self, uid):
+        if api.payload is None:
+            return {"message":"expecting json with status. none given"}, 400
         return change_status(id=uid, payload=api.payload)
 
     @api.doc("delete a task, require admin privilege")
-    @token_required
+    @admin_token_required
     def delete(self, uid):
         return delete_task(uid)
 

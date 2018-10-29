@@ -52,7 +52,7 @@ class Task:
 
     def update(self, stat):
         if not self.fetch_info():
-            return api.abort(404)
+            api.abort(404)
         db = get_db()
         self.status = stat
         db.execute(
@@ -71,7 +71,7 @@ class Task:
             (self.title, self.description, self.status, self.due_date)
         )
         db.commit()
-        return "task added successfully"
+        return {'message':"task added successfully"}
 
     def delete(self):
         db = get_db()
@@ -84,7 +84,7 @@ class Task:
             'DELETE FROM task WHERE id = ?', (self.uid,)
         )
         db.commit()
-        return 'successfully removed'
+        return {'message':'task removed successfully'}
 
     def to_json(self):
         return {

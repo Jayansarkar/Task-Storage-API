@@ -3,6 +3,7 @@ from flask_restplus import Resource
 from app.main.service.auth_service import (login, login_user, register,
                                            register_user)
 from app.main.util.dto import AuthDto
+from app.main.util.decorator import token_required
 
 api = AuthDto.api
 
@@ -24,5 +25,6 @@ class Login(Resource):
 class Register(Resource):
     @api.doc("New user registration")
     @api.expect(register)
+    @token_required
     def post(self):
         return register_user(api.payload)

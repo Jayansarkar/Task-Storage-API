@@ -9,14 +9,14 @@ user = UserDto.user
 def make_admin(public_id):
     user = User.from_pub_id(public_id)
     if user is None:
-        return api.abort(404)
+        api.abort(404)
     return user.make_admin()
 
 
 def del_user(public_id):
     user = User.from_pub_id(public_id)
     if user is None:
-        return api.abort(404)
+        api.abort(404)
     return user.delete()
 
 def get_all_users():
@@ -27,9 +27,15 @@ def get_all_users():
 
     if not users:
         api.abort(404)
-    user = User(user['username'])
-    user.fetch_info()
-    return user.to_json
+    res = {
+        'data': []
+    }
+    for user in users:
+        user = User(user['username'])
+        user.fetch_info()
+        res['data'].append(user.to_json())
+    
+    return res
 
 
 def get_one_user(pub):
@@ -38,7 +44,7 @@ def get_one_user(pub):
         'SELECT username FROM user WHERE pub_id = ?', (pub,)
     ).fetchone()
     if not user:
-        return api.abort(404)
+        api.abort(404)
     user = User(user['username'])
     user.fetch_info()
-    return user.to_json
+    return {'data':user.to_json()}

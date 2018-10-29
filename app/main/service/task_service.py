@@ -14,7 +14,7 @@ def create_task(payload):
 
 def change_status(id, payload):
     task = Task(id)
-    return task.update(api.payload['status'])
+    return task.update(payload['status'])
 
 
 def delete_task(id):
@@ -35,14 +35,14 @@ def get_all_tasks():
         task = Task.from_sql_row(t)
         ans.append(task.to_json())
 
-    return ans
+    return {'data': ans}
 
 
 def get_one_task(uid):
     task = Task(uid)
     if not task.fetch_info():
         api.abort(404)
-    return task.to_json()
+    return {'data': task.to_json()}
 
 
 def get_overdue():
@@ -58,7 +58,7 @@ def get_overdue():
         task = Task.from_sql_row(t)
         ans.append(task.to_json())
 
-    return ans
+    return {'data':ans}
 
 
 def get_d_date(d_date):
@@ -74,7 +74,7 @@ def get_d_date(d_date):
         task = Task.from_sql_row(t)
         ans.append(task.to_json())
 
-    return ans
+    return {'data':ans}
 
 
 def get_finished():
@@ -88,4 +88,4 @@ def get_finished():
     for t in tasks:
         task = Task.from_sql_row(t)
         ans.append(task.to_json())
-    return ans
+    return {'data':ans}
