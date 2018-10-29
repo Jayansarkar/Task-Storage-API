@@ -13,6 +13,7 @@ api = TaskDto.api
 
 
 @api.route('/')
+@api.doc(security='apikey')
 class AllTaks(Resource):
     # @api.marshal_list_with(a_task)
     @token_required
@@ -22,7 +23,6 @@ class AllTaks(Resource):
 
     @admin_token_required
     @api.expect(task_add, validate=True)
-    @api.doc(security='apikey')
     def post(self):
         return create_task(api.payload)
 
@@ -51,6 +51,7 @@ class SinlgeTask(Resource):
 
 
 @api.route('/due')
+@api.doc(security='apikey')
 class ShowByDue(Resource):
     @api.doc("fetch by due date")
     @token_required
@@ -64,6 +65,7 @@ class ShowByDue(Resource):
 
 
 @api.route('/overdue')
+@api.doc(security='apikey')
 class ShowDueTask(Resource):
     @api.doc('show overdue tasks')
     @token_required
@@ -72,6 +74,7 @@ class ShowDueTask(Resource):
 
 
 @api.route('/finished')
+@api.doc(security='apikey')
 class ShowFinished(Resource):
     @api.doc('show finished tasks')
     @token_required
