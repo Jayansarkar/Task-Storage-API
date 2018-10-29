@@ -1,0 +1,4 @@
+Flask==1.0.2
+Flask-Bcrypt==0.7.1
+flask-restplus==0.12.1
+PyJWT==1.6.4
