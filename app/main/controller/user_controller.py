@@ -11,8 +11,10 @@ api = UserDto.api
 
 @api.route('/')
 @api.response(404, "No user found")
+@api.doc(security='apikey')
 class AllUsers(Resource):
     @api.marshal_list_with(user, envelope='data')
+    @token_required
     def get(self):
         return get_all_users()
 
