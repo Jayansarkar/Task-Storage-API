@@ -15,4 +15,4 @@ install: system-packages python-packages
 run:
 	python manage.py 
 
-all: clean install tests run
+all: clean install run
