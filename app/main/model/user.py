@@ -85,6 +85,11 @@ class User:
         db.execute(
             'DELETE FROM user WHERE username = ?', (self.username,)
         )
+        db.commit()
+        return {
+            'message': "User removed updated",
+            'user': self.to_json()
+        }
 
     def is_admin(self):
         return self.admin

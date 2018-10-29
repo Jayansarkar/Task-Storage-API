@@ -7,7 +7,7 @@ from app.main.model.user import User
 from app.main.config import key
 
 
-def admin_token_required(f):
+def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'X-API-KEY' not in request.headers:
@@ -15,6 +15,7 @@ def admin_token_required(f):
         token = request.headers['X-API-KEY']
         try:
             jwt.decode(token, key=key)
+            print('hi')
         except:
             return {'message': 'token is invalid'}, 401
 
@@ -22,7 +23,7 @@ def admin_token_required(f):
 
     return decorated
 
-def token_required(f):
+def admin_token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         if 'X-API-KEY' not in request.headers:

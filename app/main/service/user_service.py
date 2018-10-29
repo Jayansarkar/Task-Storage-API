@@ -27,14 +27,18 @@ def get_all_users():
 
     if not users:
         api.abort(404)
-    return users
+    user = User(user['username'])
+    user.fetch_info()
+    return user.to_json
 
 
 def get_one_user(pub):
     db = get_db()
     user = db.execute(
-        'SELECT * FROM user WHERE pub_id = ?', (pub,)
+        'SELECT username FROM user WHERE pub_id = ?', (pub,)
     ).fetchone()
     if not user:
         return api.abort(404)
-    return user
+    user = User(user['username'])
+    user.fetch_info()
+    return user.to_json
