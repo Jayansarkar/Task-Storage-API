@@ -3,11 +3,13 @@ Api for storage of task
 
 ### Terminal commands
 
+    First run: make virtual
+
     Initial installation: make install
 
     To run application: make run
 
-    To run all commands at once : make all
+    To run all commands at once except virtual : make all
 
 
 ### Viewing the app
