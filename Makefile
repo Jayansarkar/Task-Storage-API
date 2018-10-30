@@ -16,3 +16,4 @@ run:
 	python manage.py 
 
 all: clean install run
+
