@@ -8,7 +8,7 @@ system-packages:
 	sudo apt install python3-pip -y
 
 python-packages:
-	pip install -r requirements.txt
+	sudo pip install -r requirements.txt
 
 install: system-packages python-packages
 
