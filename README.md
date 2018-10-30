@@ -3,7 +3,9 @@ Api for storage of task
 
 ### Terminal commands
 
-    First run: make virtual
+    First run: 
+      python3 -m venv venv
+      . venv/bin/activate
 
     Initial installation: make install
 

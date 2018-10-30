@@ -1,4 +1,4 @@
-.PHONY: clean system-packages virtual python-packages install run all
+.PHONY: clean system-packages python-packages install run all
 
 clean:
 	find . -type f -name '*.pyc' -delete
@@ -7,12 +7,8 @@ clean:
 system-packages:
 	sudo apt install python3-pip -y
 
-virtual:
-	python3 -m venv venv
-	. venv/bin/activate
-
 python-packages:
-	pip install -r requirements.txt
+	sudo pip install -r requirements.txt
 
 install: system-packages python-packages
 
